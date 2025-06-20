@@ -1,38 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Countdown Timer
-    const countdownElement = document.getElementById('countdown');
-    const deadline = new Date();
-    deadline.setHours(deadline.getHours() + 2); // Set timer for 2 hours from now for demonstration
-    deadline.setMinutes(0);
-    deadline.setSeconds(0);
-    deadline.setMilliseconds(0);
+function startCountdown(duration) {
+      let timer = duration, hours, minutes, seconds;
+      const display = document.getElementById('timer');
 
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const timeLeft = deadline - now;
+      setInterval(function () {
+        hours = parseInt(timer / 3600, 10);
+        minutes = parseInt((timer % 3600) / 60, 10);
+        seconds = parseInt(timer % 60, 10);
 
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        if (timeLeft < 0) {
-            countdownElement.innerHTML = "Waktu Habis!";
-            // Optionally, disable CTA buttons or hide discount
-            document.querySelector('.discount-box').style.display = 'none';
-            document.querySelector('.cta-group .btn-primary').textContent = 'Promo Telah Berakhir';
-            document.querySelector('.cta-group .btn-primary').style.backgroundColor = '#ccc';
-            document.querySelector('.cta-group .btn-primary').style.pointerEvents = 'none';
-        } else {
-            countdownElement.innerHTML =
-                (hours < 10 ? '0' : '') + hours + " jam " +
-                (minutes < 10 ? '0' : '') + minutes + " menit " +
-                (seconds < 10 ? '0' : '') + seconds + " detik";
+        display.textContent = hours + ":" + minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          timer = 0;
         }
+      }, 1000);
     }
 
-    // Update the countdown every 1 second
-    setInterval(updateCountdown, 1000);
-    updateCountdown(); // Initial call to display immediately
+    window.onload = function () {
+      const countdownSeconds = 3 * 60 * 60;
+      startCountdown(countdownSeconds);
+    };
 
     // Simple Testimonial Carousel (Basic, for more advanced use library like Swiper.js)
     const testimonialCarousel = document.querySelector('.testimonial-carousel');
