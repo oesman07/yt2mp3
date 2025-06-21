@@ -552,3 +552,22 @@ footer a:hover {
         padding: 15px 0;
     }
 }
+/* Tambahan untuk iframe form */
+.iframe-container {
+    max-width: 600px; /* Batasi lebar iframe agar sesuai dengan tata letak form sebelumnya */
+    margin: 0 auto; /* Tengahkankan iframe */
+    background-color: var(--light-bg); /* Beri warna latar belakang jika iframe transparan */
+    padding: 15px; /* Beri sedikit padding agar tidak terlalu mepet */
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.iframe-container iframe {
+    display: block; /* Menghilangkan margin bawah default iframe */
+}
+
+/* Sesuaikan dengan warna latar belakang iframe form Anda */
+/* Berdasarkan URL iframe, bg_color=e3cfa6. Sesuaikan jika ingin match */
+.order-section {
+    background-color: #e3cfa6; /* Mengubah background section agar match iframe */
+}
