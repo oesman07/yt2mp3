@@ -43,3 +43,31 @@ function startCountdown(duration) {
     // Auto-scroll testimonials every 5 seconds
     // setInterval(showNextTestimonial, 5000); // Uncomment to enable auto-scroll
 });
+
+ function getUrlParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    function replaceUrlParam(url, paramName, paramValue) {
+      var pattern = new RegExp('('+paramName+'=).*?(&|$)'),
+          newUrl = url.replace(pattern,'$1' + paramValue + '$2');
+      if ( newUrl == url ) {
+        newUrl = newUrl + (newUrl.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
+      }
+      return newUrl;
+    }
+
+    const subacc = getUrlParam('subacc');
+    const button = document.getElementById('ctaBtn');
+    const targetUrl = "https://e3a903.ppihnbvs.cc/?target=-7EBNQCgQAAAfCNAID25UABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx&al=104071&ap=-1"; 
+
+    if (subacc) {
+      button.href = replaceUrlParam(targetUrl, 'subacc', subacc);
+    } else {
+      button.href = targetUrl;
+    }
+
+    document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
