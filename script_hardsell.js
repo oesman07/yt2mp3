@@ -43,31 +43,21 @@ function startCountdown(duration) {
     // Auto-scroll testimonials every 5 seconds
     // setInterval(showNextTestimonial, 5000); // Uncomment to enable auto-scroll
 });
+   function getUrlParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
 
- function getUrlParam(name) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(name);
-    }
+  const subacc = getUrlParam('subacc') || '';
+  
+  // Pisahkan bagian awal (sampai target) dan bagian parameter lainnya
+  const baseStart = "https://idfzxd.pro/forms/?target=-7EBNQCgQAAAfCNAID25UABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx";
+  const baseParams = "&bg_color=e3cfa6&text_color=000000&btn_color=f51414&btn_text_color=ffffff&btn_shdw=990000&bg_opacity=1&form_width=100&name_width=100&phone_width=100&btn_shdw_size=true&btn_font=22&btn_font_pos=12px%2050px&btn_edit_text=Pesan%20Sekarang&name_pos=margin-right&phone_pos=margin-right&button_pos=margin";
 
-    function replaceUrlParam(url, paramName, paramValue) {
-      var pattern = new RegExp('('+paramName+'=).*?(&|$)'),
-          newUrl = url.replace(pattern,'$1' + paramValue + '$2');
-      if ( newUrl == url ) {
-        newUrl = newUrl + (newUrl.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
-      }
-      return newUrl;
-    }
+  const finalIframeURL = subacc
+    ? `${baseStart}&subacc=${encodeURIComponent(subacc)}${baseParams}`
+    : `${baseStart}${baseParams}`;
 
-    const subacc = getUrlParam('subacc');
-    const button = document.getElementById('ctaBtn');
-    const targetUrl = "https://e3a903.ppihnbvs.cc/?target=-7EBNQCgQAAAfCNAID25UABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx&al=104071&ap=-1"; 
+  document.getElementById("order").src = finalIframeURL;
 
-    if (subacc) {
-      button.href = replaceUrlParam(targetUrl, 'subacc', subacc);
-    } else {
-      button.href = targetUrl;
-    }
-
-    document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-  });
+  console.log("Final iframe URL:", finalIframeURL);
