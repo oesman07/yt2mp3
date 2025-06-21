@@ -116,7 +116,7 @@
         </div>
     </section>
 
-     <section id="order-form" class="order-section">
+     <section  class="order-section">
         <div class="container">
             <h2>PESAN PROSTANORE SEKARANG & DAPATKAN DISKON 50%!</h2>
             <p class="disclaimer-promo">Promo Terbatas Hanya Untuk Beberapa Pembeli Pertama!</p>
@@ -126,8 +126,8 @@
                 <div class="feature-item"><i class="fas fa-undo-alt"></i> GARANSI 100% UANG KEMBALI!</div>
             </div>
 
-            <div class="iframe-container">
-                <iframe src="https://idfzxd.pro/forms/?target=-7EBNQCgQAAAfCNAID25UABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx&bg_color=e3cfa6&text_color=000000&btn_color=f51414&btn_text_color=ffffff&btn_shdw=990000&bg_opacity=1&form_width=100&name_width=100&phone_width=100&btn_shdw_size=true&btn_font=22&btn_font_pos=12px%2050px&btn_edit_text=Pesan%20Sekarang&name_pos=margin-right&phone_pos=margin-right&button_pos=margin"
+            <div class="iframe-container" id="order-form">
+                <iframe
                         width="100%"
                         height="300px" frameborder="0"
                         scrolling="no"
@@ -143,5 +143,22 @@
     </footer>
 
     <script src="script_hardsell.js"></script>
+    <script>
+  // Ambil parameter subacc dari URL
+  function getUrlParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
+
+  // Pasang iframe dengan subacc
+  const subacc = getUrlParam('subacc') || '';
+  const baseIframeURL = "https://idfzxd.pro/forms/?target=-7EBNQCgQAAAcswQID25UABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx&bg_color=d0d9da&text_color=000000&btn_color=ff3333&btn_text_color=ffffff&btn_shdw=990000&bg_opacity=1&form_width=100&name_width=100&phone_width=100&btn_font=22&btn_font_pos=12px%2050px&btn_edit_text=Place%20order&name_pos=margin-right&phone_pos=margin-right&button_pos=margin-right";
+
+const finalIframeURL = subacc
+  ? `${baseIframeURL}&subacc=${encodeURIComponent(subacc)}`
+  : baseIframeURL;
+
+document.getElementById("order-form").src = finalIframeURL;
+</script>
 </body>
 </html>
